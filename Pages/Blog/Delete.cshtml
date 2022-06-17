@@ -1,0 +1,36 @@
+﻿@page
+@model TichHopEntityFramwork.Pages.Blog.DeleteModel
+
+@{
+    ViewData["Title"] = "Xóa";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Xóa</h1>
+
+<h3>Bạn có chắc muốn xóa @Html.DisplayFor(model => model.Article.Title)</h3>
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Article.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Article.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Article.Created)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Article.Created)
+        </dd>
+       
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Article.Id" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-page="./Index" class="btn btn-info">Back to List</a>
+    </form>
+</div>

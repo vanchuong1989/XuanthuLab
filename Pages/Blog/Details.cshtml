@@ -1,0 +1,20 @@
+﻿@page
+@model TichHopEntityFramwork.Pages.Blog.DetailsModel
+
+@{
+    ViewData["Title"] = @Model.Article.Title;
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Article.Title</h1>
+
+
+<p><i>@Html.DisplayFor(model=>model.Article.Created)</i></p>
+<hr />
+@*@Html.DisplayFor(model => model.Article.Content)*@
+@Html.Raw(Model.Article.Content)
+<hr />
+<div>
+    <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@Model.Article.Id">Sửa</a> |
+    <a class="btn btn-info" asp-page="./Index">Danh sách bài viết</a>
+</div>

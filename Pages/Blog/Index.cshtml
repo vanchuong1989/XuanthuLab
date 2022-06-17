@@ -1,0 +1,80 @@
+﻿@page
+@model TichHopEntityFramwork.Pages.Blog.IndexModel
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    int i = 1;
+}
+
+@* Phát sinh Paging Partial *@
+@{ 
+    var pagingmodel = new TichHopEntityFramwork.Helper.PagingModel()
+    {
+        currentpage=Model.currentPage,
+        countpage=Model.countPages,
+        generateUrl = (int? p)=> @Url.Page("/Blog/Index", new { p = p })
+    };
+}
+
+
+
+<partial name="_Paging" model="@pagingmodel" />
+
+
+
+<h1>Danh sách bài viết</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary mt-1">Tạo Bài Viết Mới</a>
+</p>
+
+
+<form asp-page="./Index" method="get">
+    <label>Tìm Kiếm</label>
+    <input type="text" name="searchStr" value="" />
+    <button type="submit">Tìm</button>
+</form>
+
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].Created)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Article) {
+        <tr>
+            <td>@(i++)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+
+            <td>
+                <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.Id" >Sửa</a> |
+                <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.Id">Xem</a> |
+                <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.Id">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -61,3 +61,5 @@ namespace TichHopEntityFramwork
         }
     }
 }
+
+//dotnet aspnet-codegenerator razorpage -m TichHopEntityFramwork.Models.Article -dc TichHopEntityFramwork.Models.MyBlogContext -outDir Pages/Blog -udl --referenceScriptLibraries

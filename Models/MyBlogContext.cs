@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+//TichHopEntityFramwork.Models.MyBlogContext
 namespace TichHopEntityFramwork.Models
 {
     public class MyBlogContext:DbContext
