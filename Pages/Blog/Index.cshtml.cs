@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using TichHopEntityFramwork.Models;
 
 namespace TichHopEntityFramwork.Pages.Blog
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly TichHopEntityFramwork.Models.MyBlogContext _context;
@@ -40,7 +42,7 @@ namespace TichHopEntityFramwork.Pages.Blog
 
             if (currentPage < 1)
             {
-                countPages = 1;
+                currentPage = 1;
             }
             if (currentPage > countPages)
             {
@@ -50,7 +52,7 @@ namespace TichHopEntityFramwork.Pages.Blog
             //===============================================================================
             var qr = (from a in _context.articles
                      orderby a.Created descending
-                     select a).Skip((currentPage-1)*10).Take(ITEMS_PER_PAGE);
+                     select a).Skip((currentPage-1)*ITEMS_PER_PAGE).Take(ITEMS_PER_PAGE);
 
             if (!string.IsNullOrEmpty(searchStr))
             {
@@ -60,6 +62,7 @@ namespace TichHopEntityFramwork.Pages.Blog
             {
                 Article = await qr.ToListAsync();
             }
+            ;
 
         }
     }

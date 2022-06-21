@@ -25,4 +25,8 @@
     <PackageReference Include="MimeKit" Version="3.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="mailssave\" />
+  </ItemGroup>
+
 </Project>
